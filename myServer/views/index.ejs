@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Test</title>
+</head>
+<body>
+    <button id="test">拿数据</button>
+</body>
+<script>
+   window.addEventListener('load',function (ev) {
+     var test=document.getElementById('test');
+     test.addEventListener("click",function (ev1) {
+        /*1.创建一个请求对象*/
+        var xhr =new XMLHttpRequest();
+        /*准备发送*/
+       xhr.open('get','http://localhost:3000/api/one',true);
+       /*发送请求*/
+       xhr.send();
+       /*监听服务器响应*/
+       xhr.addEventListener('readystatechange',function (ev2) {
+         /*console.log(xhr.readyState);*/
+         if (xhr.readyState ===4){
+          /*alert(xhr.status);*/
+           if (xhr.status===200){
+             console.log(xhr.response);
+             var data2 =JSON.parse(xhr.response);
+             console.log(data2.state);
+             test.innerText=data2.data.name;
+           };
+         }
+       })
+     })
+
+     /*var json = {  contry:{ area:{ man:"12万",  women:"10万" } } };
+     var obj = eval(json);
+     alert(obj.contry.area.women);*/
+
+   })
+</script>
+</html>
