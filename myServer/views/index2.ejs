@@ -25,7 +25,7 @@
          var account =document.getElementById('account').value;
          var pwd =document.getElementById('pwd').value;
         /*准备发送*/
-       xhr.open('get','http://localhost:3000/api/two?account='+account+'&pwd'+pwd,true);
+       xhr.open('get','http://localhost:3000/api/two?account='+account+'&pwd='+pwd+'&random='+getRandomStr(),true);
        /*发送请求*/
        xhr.send();
        /*监听服务器响应*/
@@ -43,7 +43,10 @@
      /*var json = {  contry:{ area:{ man:"12万",  women:"10万" } } };
      var obj = eval(json);
      alert(obj.contry.area.women);*/
-
-   })
+      /* console.log(getRandomStr());*/
+   });
+   function getRandomStr() {
+       return Math.random()+(new Date().getTime());
+   }
 </script>
 </html>

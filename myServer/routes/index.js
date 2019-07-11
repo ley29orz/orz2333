@@ -22,6 +22,13 @@ router.get('/api/two', function(req, res, next) {
     "data":req.query
   });
 });
+/* 接口路由3 */
+router.get('/api/three', function(req, res, next) {
+  res.json({
+    "state":200,
+    "data":req.query
+  });
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,5 +39,8 @@ router.get('/', function(req, res, next) {
 router.get('/two', function(req, res, next) {
   res.render('index2');
 });
-
+/* GET home page. */
+router.get('/three', function(req, res, next) {
+  res.render('index3');
+});
 module.exports = router;
