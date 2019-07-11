@@ -19,7 +19,21 @@
    window.addEventListener('load',function (ev) {
      var btn=document.getElementById('send');
      btn.addEventListener("click",function (ev1) {
-        AjaxTool.ajaxRequest()
+         //1.获取用户输入的内容
+         var account =document.getElementById('account').value;
+         var pwd =document.getElementById('pwd').value;
+         //2.参数对象
+         let paramsObj = {
+             "account":account,
+             "pwd":pwd
+         }
+         AjaxTool.ajaxRequest('http://localhost:3000/api/three',paramsObj,function (xhr) {
+            //处理成功的回调
+            console.log('请求成功',xhr.responseText);
+        },function (xhr) {
+            //处理失败的回调
+            console.log("请求失败");
+        })
      })
 
      /*var json = {  contry:{ area:{ man:"12万",  women:"10万" } } };
