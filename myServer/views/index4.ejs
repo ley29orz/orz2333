@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+<label>
+    <input id="account" type="text" name="account">
+</label>
+<label>
+    <input id="pwd" type="text" name="pwd">
+</label>
+<button id="send">发起get请求</button>
+</body>
+<script src="/js/AjaxToolOne.js"></script>
+<script>
+    window.addEventListener('load',function (ev) {
+        var btn=document.getElementById('send');
+        btn.addEventListener("click",function (ev1) {
+            //1.获取用户输入的内容
+            var account =document.getElementById('account').value;
+            var pwd =document.getElementById('pwd').value;
+            //2.参数对象
+            let paramsObj = {
+                "account":account,
+                "pwd":pwd
+            }
+            AjaxTool.ajaxRequest('http://localhost:3000/api/four',paramsObj,2000,function (xhr) {
+                //处理成功的回调
+                console.log('请求成功',xhr.responseText);
+            },function (xhr) {
+                //处理失败的回调
+                console.log("请求失败");
+            })
+        })
+        /*var json = {  contry:{ area:{ man:"12万",  women:"10万" } } };
+        var obj = eval(json);
+        alert(obj.contry.area.women);*/
+        /* console.log(getRandomStr());*/
+    });
+</script>
+</html>

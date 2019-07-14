@@ -22,15 +22,52 @@ router.get('/api/two', function(req, res, next) {
     "data":req.query
   });
 });
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Node.js' });
+/* 接口路由3 */
+router.get('/api/three', function(req, res, next) {
+    console.log(req.query);
+    res.json({
+        "state":200,
+        "data":req.query
+    });
+});
+/* 接口路由4 */
+router.get('/api/four', function(req, res, next) {
+    console.log(req.query);
+    setTimeout(function () {
+        res.json({
+            "state":200,
+            "data":req.query
+        });
+    },1000)
+});
+/* 接口路由5 */
+router.post('/api/five', function(req, res, next) {
+    console.log(req.body);
+    res.json({
+        "state":200,
+        "data":"你发起的是Post请求"
+    });
 });
 
-/* GET home page. */
-router.get('/two', function(req, res, next) {
+    /* GET home page. */
+    router.get('/', function(req, res, next) {
+        res.render('index', { title: 'Node.js' });
+    });
+
+    /* GET home page. */
+    router.get('/two', function(req, res, next) {
   res.render('index2');
 });
-
+router.get('/three', function(req, res, next) {
+    res.render('index3');
+});
+router.get('/four', function(req, res, next) {
+    res.render('index4');
+});
+router.get('/five', function(req, res, next) {
+    res.render('index5');
+});
+router.get('/six', function(req, res, next) {
+    res.render('index6');
+});
 module.exports = router;

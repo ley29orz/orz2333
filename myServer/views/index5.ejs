@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+<label>
+    <input id="account" type="text" name="account">
+</label>
+<label>
+    <input id="pwd" type="text" name="pwd">
+</label>
+<button id="send">发起post请求</button>
+</body>
+<script src="/js/AjaxToolOne.js"></script>
+<script>
+    window.addEventListener('load',function (ev) {
+        var btn=document.getElementById('send');
+        btn.addEventListener("click",function (ev1) {
+            /*获取用户输入的内容*/
+            var xhr = new XMLHttpRequest();
+            var account =document.getElementById('account').value;
+            var pwd =document.getElementById('pwd').value;
+            /*准备发送*/
+            xhr.open('post','http://localhost:3000/api/five',true);
+            /*设置请求头*/
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            /*发送请求*/
+            xhr.send('name=ley&age=26');
+            /*监听服务器响应*/
+            xhr.addEventListener('readystatechange',function (ev2) {
+                /*console.log(xhr.readyState);*/
+                if (xhr.readyState ===4){
+                    /*alert(xhr.status);*/
+                    if (xhr.status===200){
+                        console.log(xhr.responseText);
+                    }else {
+                        console.log('请求失败');
+                    }
+                }
+            })
+        })
+        /*var json = {  contry:{ area:{ man:"12万",  women:"10万" } } };
+        var obj = eval(json);
+        alert(obj.contry.area.women);*/
+        /* console.log(getRandomStr());*/
+    });
+</script>
+</html>
